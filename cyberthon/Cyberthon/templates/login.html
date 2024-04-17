@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url('https://www.odysseycs.com/wp-content/uploads/2022/02/Safer-Internet-day.jpg') no-repeat;
+            background-size: cover;
+            background-position: center ;
+
+        }
+        /* background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8_MbDSsb96OWcE9dvo1trWA4q2HH8JCGf8UAhh_VHssHPf9m_QuhNyZkLRCIBXCVUIas&usqp=CAUhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR58WZdigf4YxO6A-MUOW9fMf6wxX0jORTj1OmR-IMvyubyw5iZD8ZbX8mrDoxtgRbkOYs&usqp=CAUhttps://media.istockphoto.com/id/827302652/vector/fingerprint-scan-magnify-glass-technology-background-security-concept-vector-illustration.jpg?s=612x612&w=0&k=20&c=jG0bU4Uca8A1rr-82lEoSa7x2RHC8NQ7ac99E7AGHhk=') no-repeat; */
+
+        .wrapper{
+            width: 420px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.571);
+            backdrop-filter:blur(7px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+            color: rgb(250, 249, 247);
+            border-radius: 10px;
+            padding: 30px 40px;
+        }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+
+        }
+
+        .wrapper .input-box {
+            width: 100%;
+            height: 50px;
+            position: relative;
+           
+            margin: 20px 0;
+        }
+
+        .input-box input{
+            width: calc(100% - 40px);
+            height: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255,255,255,255);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+            padding: 20px 45px 20px 20px ;
+            box-sizing: border-box;
+        }
+
+        .input-box input::placeholder {
+           color: #fff; 
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .wrapper .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            margin: -15px 0 15px;
+
+        }
+
+        .remember-forgot label input{
+            accent-color: #fff;
+            margin-right: 3px;
+        }
+
+        .remember-forgot a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .remember-forgot a:hover{
+            text-decoration: underline;
+        }
+
+        .wrapper .btn{
+            width: 100%;
+            height: 45px;
+            background: #fff;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            cursor: pointer;
+            font: 16px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .wrapper .register-link{
+           font-size: 14.5px;
+           text-align: center;
+           margin:20px 0 15px; 
+        }
+
+        .register-link p a {
+            color: #fff;
+            text-decoration: none;
+            font: 600;
+        }
+
+        .register-link p a:hover {
+            text-decoration: underline;
+
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+       <form action="{{ url_for('login') }}" , method="post">
+           <h1>Login</h1>
+           <div class="input-box">
+                <input type="text" name="name" placeholder="Name" required>
+                <i class='bx bxs-user'></i>
+           </div>
+           <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required>
+            <i class='bx bxs-lock-alt' ></i>
+       </div>
+
+       
+            
+       <button type="submit" class="btn">Login</button>  
+       </div>
+
+       
+
+       
+       </form> 
+    </div>
+    
+</body>
+</html>
+
+
+

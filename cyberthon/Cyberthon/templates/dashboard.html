@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel = "stylesheet" href = "/home/kakarot/Downloads/Cyberthon/app/templates/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        * {
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'poppins',sans-serif;
+
+
+        }
+
+        .topbar {
+            position:fixed;
+            justify-content: space-between;
+            background: #fff;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
+            width:100%;
+            height: 60px;
+            padding:0 20px;
+            display: grid;
+            grid-template-columns: 2fr 0.05fr;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .logo h2{
+            color : #3f3e3e
+        }
+
+
+        .user {
+            /* position:relative; */
+            display:flex;
+            width:50px;
+            height:50px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .user img {
+            /* position:absolute; */
+            /* top:0;
+            left:0; */
+            height:100%;
+            width:100%;
+            object-fit:cover;
+        }
+
+        /* ---------main-----------*/
+        .main{
+            position: absolute;
+            top:50px;
+            width:100%;
+            left:0%;
+            min-height:100vh;
+            background: #f5f5f5;
+
+        }
+
+        .cards{
+            width:100%;
+            padding:35px 40px;
+            display:grid;
+            grid-template-columns:repeat(4,1fr);
+            grid-gap:20px;
+        }
+
+        .cards .card{
+            padding:20px;
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border-radius:10px;
+            box-shadow: 0 7px 25px 0 rgba(0,0,0,0.08);
+        }
+
+        .number{
+            font-size:35px;
+            font-weight:500;
+            color: #299B63;
+        }
+
+        .card-name{
+            color:#888;
+            font-weight: 600;
+        }
+
+        /* .map{
+            text-align: center;
+            padding: 5px 5px;
+            /* background-color: white; */
+            /* width:2000px */
+            
+        /* }
+        .Location{
+            margin-top: 0 ;
+        }
+        .mapouter{
+            display:inline-block;
+            position:relative;
+            text-align: rigth;
+            height:500px;
+            width:600px;
+            margin-top: 20px;
+        }
+
+        .gmap_canvas{
+            overflow: hidden;
+            background: none;
+            height: 500px;
+            width:600px;
+        } */ 
+
+
+        .charts {
+            display: grid;
+            grid-template-columns:1fr 1fr 1fr;
+            grid-gap: 20px;
+            width:100%;
+            padding:20px;
+            padding-top:0;
+        }
+
+        .chart{
+            /* display: flex; */
+            background: #ffff;
+            padding:20px;
+            border-radius: 10px;
+            box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+            width: 100%;
+        }
+
+        .chart h2{
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="topbar">
+            <div class="logo">
+                <h2>Bloody Hackers</h2>
+            </div>
+        
+            <!-- <div class = "search">
+                <input type = "text" id = "search" placeholder = "search here">
+                <label for = "search"> <i class = "fas fa-search"></i></label>
+            </div> -->
+            <!-- <i class=""></i> -->
+            <div class = "user">
+                <img src = "images/anonymous-guy-fawkes.jpg" alt = "">
+            </div>
+        </div>
+        <div class="main">
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-name">Number of Crimes</div>
+                        <div class="number">{{ total_crimes }}</div>
+                        
+                    </div>
+                    <div class = "icon-box">
+                        <!-- <i class = "fas fa-user-graduate"></i> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-name">Number of Locations</div>
+                        <div class="number">{{new_loc_count}}</div>
+                        
+                    </div>
+                    <div class = "icon-box">
+                        <!-- <i class = "fas fa-user-graduate"></i> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-name">Number of Crimes</div>
+                        <div class="number">{{new_off_count}}</div>
+                        
+                    </div>
+                    <div class = "icon-box">
+                        <!-- <i class = "fas fa-user-graduate"></i> -->
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-name">Hours categories</div>
+                        <div class="number">{{new_hour_count}}</div>
+                        
+                    </div>
+                    <div class = "icon-box">
+                        <!-- <i class = "fas fa-user-graduate"></i> -->
+                    </div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class = "chart" id = "lineChartContainer">
+                    <h2>Temporal Trends</h2>
+                    <canvas id="mylineChart" width = "300" height = "300"></canvas>
+                </div>
+                <div class="chart" id = "pieChartContainer">
+                    <h2>Location Density</h2>
+                    <canvas id="mypieChart" width = "300" height = "300"></canvas>
+                    
+                </div>
+                <div class="chart" id = "barChartContainer">
+                    <h2>Offence Density</h2>
+                    <canvas id="mybarChart" width = "300" height = "300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function() {
+            const offence = JSON.parse('{{ offence|tojson|safe }}');
+            const offence_count = JSON.parse('{{ offence_count|tojson|safe }}');
+            const pieCtx = document.getElementById('mypieChart');
+            new Chart(pieCtx, {
+                type:'pie',
+                data:{
+                    labels:offence,
+                    datasets:[{
+                        label:"Offence Density",
+                        data: offence_count,
+                        borderwidth:1,
+                    }]},
+                options: {
+                    responsive:true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    radius:150,
+                }
+            });
+            const hour = JSON.parse('{{ hour|tojson|safe }}');
+            const hour_count = JSON.parse('{{ hour_count|tojson|safe }}');
+            const lineCtx = document.getElementById('mylineChart');
+            new Chart(lineCtx, {
+                type:'line',
+                data: {
+                    labels:hour,
+                    datasets:[{
+                        label:"Temporaltrends",
+                        data: hour_count,
+                        borderwidth:1,
+                        backgroundColor: [
+                            "rgba(85,85,85,1)"
+                        ],
+                        borderColor:[
+                            'rgb(41,155,99)'
+                        ],
+                    }]
+                },
+                options:{
+                    responsive:true,
+                    scales: {
+                        y: {
+                            beginAtZero:true,
+                        }
+                    }
+                },
+            });
+            const location = JSON.parse('{{ location|tojson|safe }}');
+            const location_count = JSON.parse('{{ location_count|tojson|safe }}');
+            const barCtx = document.getElementById('mybarChart');
+            new Chart(barCtx, {
+                type:'bar',
+                data: {
+                    labels:location,
+                    datasets:[{
+                        label:"LocationTrends",
+                        data:location_count,
+                        borderwidth:1,
+                        
+                        
+                        
+                    }]
+                },
+                options:{
+                    responsive:true,
+                    scales: {
+                        y: {
+                            beginAtZero:true,
+                        }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition Results</title>
+</head>
+<body>
+    <h1>Face Recognition Results</h1>
+    
+    {% for result in results %}
+        <img src="data:image/png;base64,{{ result.frame }}" alt="Frame">
+        {% if result.match %}
+            <p style="color: red;">ALERT: Criminal detected!</p>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
